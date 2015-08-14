@@ -26,19 +26,67 @@ var doctors = [
 //console.log(JSON.stringify(doctors, null, 4));
 
 //js for all
-var newPeeps = doctors.filter(function(user){
-  return user.begin > 2000;
-});
+// var newPeeps = doctors.filter(function(user){
+//   return user.begin > 2000;
+// });
 
-console.log(JSON.stringify(newPeeps, null, 5)); // Only Christopher Eccleston, David Tennant, Matt Smith and Peter Capaldi survived the cull
+// console.log(JSON.stringify(newPeeps, null, 5)); // Only Christopher Eccleston, David Tennant, Matt Smith and Peter Capaldi survived the cull
 
 
-function getValuesByKey(array, key){
-  return array.map(function(item){
-    return item[key] || null;
-  });
+// function getValuesByKey(array, key){
+//   return array.map(function(item){
+//     return item[key] || null;
+//   });
+// }
+
+// // var actors = getValuesByKey(doctors, "actor");
+// var inputs = [{'name':'one', 'oh':'dear'},{'name':'two'},{'name':'three'}];
+// // console.log(actors); // all the actors names
+// var queryString = getQueryStringFromFilters();
+// function getQueryStringFromFilters(){
+//   var input_groups = inputs.map(function(item){
+//     var name = item.name;
+//     var namePrefix = "Mr. ";
+//     return namePrefix + name;
+//   });
+//   return input_groups;
+// }
+// console.log( queryString );
+var inputs = document.querySelectorAll('.filter-input');
+
+console.log( "inputs " + inputs );
+var filters = buildQuery( inputs );
+console.log( "filters " + JSON.stringify(filters, null, 5) );
+
+function buildQuery( inputs ) {
+  var obj = {};
+
+  for (i = 0; i < inputs.length; ++i) {
+    var filterAttribute = inputs[i].name;
+    var filterKey = inputs[i].value;
+
+    obj[inputs[i][0]] = [filterAttribute];
+    obj[inputs[i][1]] = [filterKey];
+  }
+
+  return obj;
 }
 
-var actors = getValuesByKey(doctors, "actor");
+// function getValuesByKey(array, key){
+//   return array.map(function(item){
+//     return item[key] || null;
+//   });
+// }
 
-console.log(actors); // all the actors names
+function filterArray( array, filters ) {
+  return _.query( array )
+            .and( filters );
+}
+
+var filteredDoctors = filterArray( doctors, filters );
+
+console.log( JSON.stringify(filteredDoctors, null, 5) );
+
+//console.log("using _query " + JSON.stringify(filteredDoctors, null, 5));
+//console.log();
+

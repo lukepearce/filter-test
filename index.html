@@ -3,11 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>React Github Notetaker</title>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<div id="app">test</div>
+	<div id="app">
+		
+		<input type="checkbox" class="filter-input" name="name" value="William"><label for="william">name: william</label>
+		<input type="checkbox" class="filter-input" name="name" value="Patrick"><label for="patrick">name: patrick</label>
+		<input type="checkbox" class="filter-input" name="name" value="Jon"><label for="jon">name: jon</label>
+		<input type="checkbox" class="filter-input" name="begin" value="1996"><label for="1986">begin: 1996</label>
+		<input type="checkbox" class="filter-input" name="end" value="2013"><label for="2013">end: 2013</label>
+
+	</div>
+	<script src="node_modules/underscore/underscore-min.js"></script>
+	<script src="node_modules/underscore-query/lib/underscore-query.min.js"></script>
 	<script src="app.js"></script>
 </body>
 </html>
